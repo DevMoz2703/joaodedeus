@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plataforma de cursos De Deus - Aprenda informática com vídeo aulas interativas">
+  <meta name="keywords" content="cursos, informática, educação, vídeo aulas">
+  <meta name="author" content="De Deus">
+  <title>De Deus - Cursos de Informática</title>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;900&family=Noto+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <style>
+    :root {
+      --primary-color: #0284c7;
+      --primary-light: #0ea5e9;
+      --primary-dark: #0369a1;
+      --accent-color: #f0f9ff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --border-color: #e2e8f0;
+      --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: "Work Sans", "Noto Sans", sans-serif; 
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    /* Video Container */
+    .video-wrapper { 
+      position: relative; 
+      padding-bottom: 56.25%; 
+      height: 0; 
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-medium);
+      background: #000;
+    }
+
+    .video-wrapper iframe { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      border: 0; 
+    }
+
+    /* Playlist Styles */
+    .playlist-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow-light);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .playlist-item {
+      transition: var(--transition-smooth);
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .playlist-item:last-child {
+      border-bottom: none;
+    }
+
+    .playlist-item:hover {
+      background-color: #f8fafc;
+      transform: translateX(4px);
+    }
+
+    .playlist-item.active { 
+      background: linear-gradient(135deg, var(--accent-color) 0%, #e0f2fe 100%);
+      border-right: 4px solid var(--primary-color);
+      transform: translateX(0);
+    }
+
+    .playlist-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary-color);
+    }
+
+    .playlist-item .material-symbols-outlined {
+      transition: var(--transition-smooth);
+      color: var(--text-secondary);
+    }
+
+    .playlist-item.active .material-symbols-outlined {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    .playlist-item:hover .material-symbols-outlined {
+      color: var(--primary-light);
+      transform: scale(1.05);
+    }
+
+    /* Video Info */
+    .video-info {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    .video-title {
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .video-description {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Progress Indicator */
+    .progress-indicator {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      opacity: 0.3;
+      transition: var(--transition-smooth);
+    }
+
+    .playlist-item.active .progress-indicator {
+      background: var(--primary-color);
+      opacity: 1;
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    .playlist-item.completed .progress-indicator {
+      background: #10b981;
+      opacity: 1;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 16px;
+      }
+      
+      .video-title {
+        font-size: 1.5rem;
+      }
+      
+      .playlist-item {
+        padding: 16px;
+      }
+      
+      .video-info {
+        padding: 20px;
+      }
+    }
+
+    /* Focus States for Accessibility */
+    .playlist-item:focus {
+      outline: 2px solid var(--primary-color);
+      outline-offset: 2px;
+    }
+
+    /* Smooth Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    /* Custom Scrollbar */
+    .playlist-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist-container::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+
+    .playlist-container::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="container max-w-6xl mx-auto p-4 lg:p-6">
+    
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">De Deus - Cursos</h1>
+      <p class="text-gray-600">Aprenda informática com vídeo aulas interativas</p>
+    </header>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      
+      <!-- Video Section -->
+      <div class="lg:col-span-2">
+        <div class="video-wrapper mb-6">
+          <div id="player" aria-label="Player de vídeo do YouTube"></div>
+        </div>
+        
+        <div class="video-info fade-in">
+          <h2 id="video-title" class="video-title">Aula 1: Introdução à Informática</h2>
+          <p id="video-description" class="video-description">
+            Nesta aula, vamos explorar os conceitos básicos da informática, incluindo histórico, componentes básicos e manipulação de dados fundamentais.
+          </p>
+          
+          <!-- Video Stats -->
+          <div class="flex items-center gap-4 mt-4 text-sm text-gray-500">
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-base">schedule</span>
+              <span id="video-duration">--:--</span>
+            </span>
+            <span class="flex items-center gap-1">
+              <span class="material-symbols-outlined text-base">visibility</span>
+              <span>Aula <span id="current-lesson">1</span> de <span id="total-lessons">3</span></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Playlist Section -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-6">
+          <h3 class="text-xl font-semibold mb-4 text-gray-900">Lista de Aulas</h3>
+          
+          <div class="playlist-container" role="list">
+            <div class="playlist-item active" 
+                 role="listitem"
+                 tabindex="0"
+                 data-video-id="1RhuLDAgrP0"
+                 data-title="Aula 1: Introdução à Informática"
+                 data-description="Nesta aula, vamos explorar os conceitos básicos da informática, incluindo histórico, componentes básicos e manipulação de dados fundamentais."
+                 data-lesson="1"
+                 aria-label="Reproduzir Aula 1: Introdução à Informática">
+              
+              <div class="flex items-center gap-3 p-4 pr-8 relative">
+                <span class="material-symbols-outlined text-2xl">play_circle</span>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-medium text-gray-900 truncate">Aula 1: Introdução à Informática</h4>
+                  <p class="text-sm text-gray-500 mt-1">Conceitos básicos</p>
+                </div>
+                <div class="progress-indicator"></div>
+              </div>
+            </div>
+
+            <div class="playlist-item" 
+                 role="listitem"
+                 tabindex="0"
+                 data-video-id="xFrGuyw1V8s"
+                 data-title="Aula 2: Componentes do Computador"
+                 data-description="Nesta aula, vamos conhecer os principais componentes de um computador e como eles funcionam em conjunto para processar informações."
+                 data-lesson="2"
+                 aria-label="Reproduzir Aula 2: Componentes do Computador">
+              
+              <div class="flex items-center gap-3 p-4 pr-8 relative">
+                <span class="material-symbols-outlined text-2xl">smart_display</span>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-medium text-gray-900 truncate">Aula 2: Componentes do Computador</h4>
+                  <p class="text-sm text-gray-500 mt-1">Hardware essencial</p>
+                </div>
+                <div class="progress-indicator"></div>
+              </div>
+            </div>
+
+            <div class="playlist-item" 
+                 role="listitem"
+                 tabindex="0"
+                 data-video-id="b2jd-Fv-CU"
+                 data-title="Aula 3: Sistemas Operacionais"
+                 data-description="Vamos explorar o que são sistemas operacionais, suas funções principais e como gerenciam os recursos do computador."
+                 data-lesson="3"
+                 aria-label="Reproduzir Aula 3: Sistemas Operacionais">
+              
+              <div class="flex items-center gap-3 p-4 pr-8 relative">
+                <span class="material-symbols-outlined text-2xl">smart_display</span>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-medium text-gray-900 truncate">Aula 3: Sistemas Operacionais</h4>
+                  <p class="text-sm text-gray-500 mt-1">Software de sistema</p>
+                </div>
+                <div class="progress-indicator"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course Progress -->
+          <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200">
+            <h4 class="font-medium text-gray-900 mb-2">Progresso do Curso</h4>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div id="course-progress" class="bg-sky-600 h-2 rounded-full transition-all duration-500" style="width: 33%"></div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">1 de 3 aulas concluídas</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube API Script -->
+  <script>
+    class CoursePlayer {
+      constructor() {
+        this.player = null;
+        this.currentVideoId = "1RhuLDAgrP0";
+        this.totalLessons = 3;
+        this.currentLesson = 1;
+        this.completedLessons = new Set();
+        
+        this.init();
+      }
+
+      init() {
+        this.loadYouTubeAPI();
+        this.setupEventListeners();
+        this.updateStats();
+      }
+
+      loadYouTubeAPI() {
+        const tag = document.createElement("script");
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        // Set global callback
+        window.onYouTubeIframeAPIReady = () => this.onYouTubeIframeAPIReady();
+      }
+
+      onYouTubeIframeAPIReady() {
+        this.player = new YT.Player("player", {
+          videoId: this.currentVideoId,
+          playerVars: { 
+            modestbranding: 1, 
+            rel: 0,
+            showinfo: 0,
+            controls: 1,
+            autoplay: 0,
+            fs: 1,
+            cc_load_policy: 1
+          },
+          events: { 
+            onReady: () => this.onPlayerReady(),
+            onStateChange: (event) => this.onPlayerStateChange(event)
+          }
+        });
+      }
+
+      onPlayerReady() {
+        console.log("Player ready");
+        this.updateVideoDuration();
+      }
+
+      onPlayerStateChange(event) {
+        // Mark video as completed when it ends
+        if (event.data === YT.PlayerState.ENDED) {
+          this.markLessonCompleted(this.currentLesson);
+          this.playNextVideo();
+        }
+      }
+
+      loadVideo(videoId, title, description, element, lessonNumber) {
+        if (!this.player) return;
+
+        // Smooth transition effect
+        const videoInfo = document.querySelector('.video-info');
+        videoInfo.style.opacity = '0.7';
+        
+        setTimeout(() => {
+          this.player.loadVideoById(videoId);
+          this.updateVideoInfo(title, description, lessonNumber);
+          this.updateActivePlaylistItem(element);
+          this.currentVideoId = videoId;
+          this.currentLesson = lessonNumber;
+          this.updateStats();
+          
+          videoInfo.style.opacity = '1';
+        }, 200);
+      }
+
+      updateVideoInfo(title, description, lessonNumber) {
+        const titleElement = document.getElementById("video-title");
+        const descriptionElement = document.getElementById("video-description");
+        
+        titleElement.textContent = title;
+        descriptionElement.textContent = description;
+        
+        // Add fade-in animation
+        titleElement.classList.remove('fade-in');
+        descriptionElement.classList.remove('fade-in');
+        
+        setTimeout(() => {
+          titleElement.classList.add('fade-in');
+          descriptionElement.classList.add('fade-in');
+        }, 100);
+      }
+
+      updateActivePlaylistItem(activeElement) {
+        // Remove active class from all items
+        document.querySelectorAll(".playlist-item").forEach(item => {
+          item.classList.remove("active");
+          const icon = item.querySelector('.material-symbols-outlined');
+          if (icon.textContent === 'play_circle') {
+            icon.textContent = 'smart_display';
+          }
+        });
+        
+        // Add active class to selected item
+        activeElement.classList.add("active");
+        const activeIcon = activeElement.querySelector('.material-symbols-outlined');
+        activeIcon.textContent = 'play_circle';
+      }
+
+      updateStats() {
+        document.getElementById('current-lesson').textContent = this.currentLesson;
+        document.getElementById('total-lessons').textContent = this.totalLessons;
+        
+        // Update progress bar
+        const progress = (this.completedLessons.size / this.totalLessons) * 100;
+        document.getElementById('course-progress').style.width = `${progress}%`;
+        
+        // Update progress text
+        const progressText = document.querySelector('.mt-6 .text-sm');
+        if (progressText) {
+          progressText.textContent = `${this.completedLessons.size} de ${this.totalLessons} aulas concluídas`;
+        }
+      }
+
+      updateVideoDuration() {
+        if (this.player && this.player.getDuration) {
+          const duration = this.player.getDuration();
+          const minutes = Math.floor(duration / 60);
+          const seconds = Math.floor(duration % 60);
+          document.getElementById('video-duration').textContent = 
+            `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+      }
+
+      markLessonCompleted(lessonNumber) {
+        this.completedLessons.add(lessonNumber);
+        
+        // Update visual indicator
+        const playlistItems = document.querySelectorAll('.playlist-item');
+        const completedItem = Array.from(playlistItems).find(item => 
+          parseInt(item.dataset.lesson) === lessonNumber
+        );
+        
+        if (completedItem) {
+          completedItem.classList.add('completed');
+        }
+        
+        this.updateStats();
+      }
+
+      playNextVideo() {
+        const nextLesson = this.currentLesson + 1;
+        if (nextLesson <= this.totalLessons) {
+          const nextItem = document.querySelector(`[data-lesson="${nextLesson}"]`);
+          if (nextItem) {
+            setTimeout(() => {
+              nextItem.click();
+            }, 2000); // Auto-play next video after 2 seconds
+          }
+        }
+      }
+
+      setupEventListeners() {
+        document.addEventListener("DOMContentLoaded", () => {
+          // Playlist click events
+          document.querySelectorAll(".playlist-item").forEach(item => {
+            item.addEventListener("click", (e) => {
+              this.handlePlaylistClick(e.currentTarget);
+            });
+
+            // Keyboard navigation
+            item.addEventListener("keydown", (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.handlePlaylistClick(e.currentTarget);
+              }
+            });
+          });
+
+          // Keyboard shortcuts
+          document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            
+            switch(e.key) {
+              case 'ArrowUp':
+                e.preventDefault();
+                this.navigatePlaylist(-1);
+                break;
+              case 'ArrowDown':
+                e.preventDefault();
+                this.navigatePlaylist(1);
+                break;
+              case ' ':
+                e.preventDefault();
+                this.togglePlayPause();
+                break;
+            }
+          });
+        });
+      }
+
+      handlePlaylistClick(element) {
+        const videoId = element.dataset.videoId;
+        const title = element.dataset.title;
+        const description = element.dataset.description;
+        const lessonNumber = parseInt(element.dataset.lesson);
+        
+        this.loadVideo(videoId, title, description, element, lessonNumber);
+      }
+
+      navigatePlaylist(direction) {
+        const items = document.querySelectorAll('.playlist-item');
+        const currentIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+        const newIndex = Math.max(0, Math.min(items.length - 1, currentIndex + direction));
+        
+        if (newIndex !== currentIndex) {
+          items[newIndex].click();
+          items[newIndex].focus();
+        }
+      }
+
+      togglePlayPause() {
+        if (this.player) {
+          const state = this.player.getPlayerState();
+          if (state === YT.PlayerState.PLAYING) {
+            this.player.pauseVideo();
+          } else {
+            this.player.playVideo();
+          }
+        }
+      }
+    }
+
+    // Initialize the course player
+    const coursePlayer = new CoursePlayer();
+  </script>
+</body>
+</html>

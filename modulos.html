@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulos de Informática - Professor João de Deus</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Work+Sans:wght@400;500;600;700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #007bff;--secondary-color: #f8f9fa;--text-dark: #212529;--text-light: #6c757d;--accent-color: #e9ecef;}
+      body {
+        font-family: 'Work Sans', sans-serif;
+      }
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      .mobile-menu {
+        transition: all 0.3s ease;
+      }
+      .mobile-menu.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+      }
+      .mobile-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div class="flex flex-col min-h-screen">
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[var(--primary-color)] text-3xl">school</span>
+<span class="text-xl font-bold text-gray-800">Professor João de Deus</span>
+</a>
+<div class="hidden md:flex items-center space-x-6">
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors" href="index.html">Início</a>
+<a class="text-[var(--primary-color)] font-semibold border-b-2 border-[var(--primary-color)] pb-1" href="modulos.html">Módulos</a>
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors" href="sobre.html">Sobre</a>
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors" href="contacto.html">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-600 hover:text-[var(--primary-color)] transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--primary-color)]" style='background-image: url("imagens/eu2.jpg");'></div>
+<button id="mobile-menu-toggle" class="md:hidden text-gray-600 hover:text-[var(--primary-color)] transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu hidden md:hidden bg-white border-t border-gray-200 absolute w-full left-0 top-full shadow-lg">
+<div class="container mx-auto px-6 py-4">
+<div class="flex flex-col space-y-4">
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors py-2" href="index.html">Início</a>
+<a class="text-[var(--primary-color)] font-semibold py-2" href="modulos.html">Módulos</a>
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors py-2" href="sobre.html">Sobre</a>
+<a class="text-gray-600 hover:text-[var(--primary-color)] transition-colors py-2" href="contacto.html">Contacto</a>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<section class="bg-white py-16 md:py-24">
+<div class="container mx-auto px-6 text-center">
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Módulos de Informática</h1>
+<p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              Explore os módulos de informática oferecidos pelo Professor João de Deus. Cada módulo é projetado para fornecer conhecimento prático e habilidades essenciais para o mercado de trabalho.
+            </p>
+</div>
+</section>
+<section class="py-16 md:py-20 bg-[var(--secondary-color)]">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Módulos Disponíveis</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Introdução à Informática" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZN2Zb2bYHQYvMr9g8bNxJGGbjSpWqs2DtVpbHGeN4Xq1pCVLrJheTARA3FWaOVSOuHsvbiKTlSg83ErpD5kPDIjBJrur9IRQGaXpxitDJYPg8wfIngC2jWVUNiHzxJPvhQPilqLIWGhbiM11H3-Vg--gkGxnY47kl-WFYhdjR2YfH2eJVM-MUWUmKVWjIqEL1QOOJ_KWs8IneNuI368Z4dT-KZD6PJw6HwzqSqoip9L1tIBRryBo_SXSq3o7s2xM_wFPbJ38x-nSw"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 1</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Introdução à Informática</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Conceitos básicos de hardware e software, sistemas operacionais e navegação na internet.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="aulas.html">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Pacote de Escritório" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_UiBAewWcNoe-lCXhntB2UTAUrJnme97Iaf1KbWQsXQ_PgL6WFLPxp7_2bxf3J-DUyRdmz1AZ1McXqPO4ZSZnR4fUg911rVbIFB6juMb3LPslpJ98wu1_eBUNbNVxZrtEplBW7P7yUzyyEiIMRTtpTYjbaQATAY6gJl4dGikOQaq8xu67nuUw3uXUXVI-LTzWiRnb3lvzNZnyUj14cvItXAyyPjWBXXOrM2_8pa76CEf2sAqbrHTO6v116VLKenoOm0DYY8mXsfZ5"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 2</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Pacote de Escritório</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Domine as ferramentas de processamento de texto, planilhas e apresentações.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="#">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Segurança na Internet" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAw9YXOSB5reGLA0gmTk0uDWypEUrrzfFY6GxbO_pL3nDrzxqOOkQ5S1heCLvkVjmm7yavvlIMNk3qjBfpStr6JRvgiYtrDhO8iTHBhGYoLbRcum8AlKkqBzpJiCm8ag--Q6MBNBLqAvq0M0lqMVqnj9yV3GTW8LcNL3qYdcnjAT8WNggHrLr9kvbyW9BF2hvoc4b2nm-ZIjzzlvi6xa2Py2quqcRFIt-kO1qpoTtS0f8Ms0E6G__GfSFUupEMbiBFggmeIX9RTa9P"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 3</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Segurança na Internet</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Proteja seus dados e navegue com segurança na internet.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="#">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Redes Sociais e Comunicação" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDygSEZK6KoDS_SHljCmjezOk6lqZ_1FMvPLnfWSdL_gXrvSV65HnZuog5GqfR-4JcBx6wi67DY6Al3CHjy4Ftz7zvp2N5-y9MXA5YARt9dDISrkirS2MsX1-idd8uRpwrWpjuzCBKvivcBwNL7QQXub5kuKWAqMhhQXpfmKojrqCxEtWBd1KWhrsDDs69p8YkFK6LYRzQSKiRXCRoWvhkVkK2sLCvTAgcTEbgW7-Peqo2wQH44C_W8k0e6wFcUOmd6kvm7DTk05zZ"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 4</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Redes Sociais e Comunicação</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Utilize as redes sociais de forma eficaz e aprenda ferramentas de comunicação online.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="#">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Edição de Imagens e Vídeos" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPdNAIG2I9hS8jUpWzGs6S6DK4LhRJDljkKzhbiP4i2sjGMoqk2H6iYJ6J691sUVjEyd-L2zLyydL7i0e8Ru2i0-ETiHuSnQywBhnn51R60OvJHV83vK-0tN337O71SXMNCnE5MH12gqRhvjQPZCp6js9q1DGCn1hnZ7keG5Kon7eYJMn_Wpxl33AQSgOWDvHz70b37U95QajzIRh8OEqoGnn9wBtmZBwqGpUVBvm9Eiu5KEPzp18Q5rVV1dSjSmvOokKKVsI_DLUe"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 5</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Edição de Imagens e Vídeos</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Aprenda a editar imagens e vídeos para uso pessoal e profissional.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="#">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover-lift group">
+<div class="relative">
+<img alt="Criação de Sites" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWBH0NXET14V_nUQ_sQ-4DKtq7tT_ltYUK6qFR4MTC0aG55RPTECeE40mDdmpD2m3cd9kqK5-22IccsGf_dFzZUyS0cM99xu2sa36K7a_qNeytTpYHuTlZGolgtQe7DPSdtzDPZdUhl87gYaegYkd8fSSDQ3X3Y1c4TUTmzew8aNZolP4cu5agrj6ePST_ak-vU1sqhhVK3gJyja_M_RC_lzKiHAkje_eu35IX0i_oJA8v5waelWn7ga9sBRiafVvA_TJFynL0QzKM"/>
+<div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300"></div>
+<div class="absolute top-4 right-4 bg-[var(--primary-color)] text-white text-xs font-bold py-1 px-2 rounded">MÓDULO 6</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-2">Criação de Sites</h3>
+<p class="text-[var(--text-light)] text-sm mb-4">Introdução à criação de sites e blogs.</p>
+<a class="font-semibold text-[var(--primary-color)] hover:underline flex items-center gap-2" href="#">
+                    Ver detalhes <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-800 text-white py-8">
+<div class="container mx-auto px-6 text-center">
+<p>© 2025 Professor João de Deus. Todos os direitos reservados.</p>
+</div>
+</footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = mobileMenuToggle.querySelector('.material-symbols-outlined');
+    
+    mobileMenuToggle.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('hidden')) {
+            // Show menu
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('show');
+            }, 10);
+            menuIcon.textContent = 'close';
+        } else {
+            // Hide menu
+            mobileMenu.classList.remove('show');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+            menuIcon.textContent = 'menu';
+        }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('show');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+                menuIcon.textContent = 'menu';
+            }
+        }
+    });
+    
+    // Close menu when window is resized to desktop size
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) { // md breakpoint
+            mobileMenu.classList.remove('show');
+            mobileMenu.classList.add('hidden');
+            menuIcon.textContent = 'menu';
+        }
+    });
+});
+</script>
+
+</body></html>
